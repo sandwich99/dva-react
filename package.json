@@ -4,9 +4,9 @@
   "description": "Unofficial React bindings for dva, with react-router4.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dvajs/dva-react"
+    "url": "https://github.com/sandwich99/dva-react2"
   },
-  "homepage": "https://github.com/dvajs/dva-react",
+  "homepage": "https://github.com/sandwich99/dva-react2",
   "keywords": [
     "dva",
     "dva-react",
@@ -22,7 +22,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dvajs/dva/issues"
+    "url": "https://github.com/sandwich99/dva-react2/issues"
   },
   "scripts": {
     "build": "ruban build",
