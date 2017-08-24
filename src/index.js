@@ -24,7 +24,7 @@ export default function (opts = {}) {
       ];
     },
     setupApp(app) {
-      app._history = patchHistory(history);
+      app._history = history;
     },
   };
 
@@ -106,13 +106,4 @@ function getProvider(store, app) {
 function render(container, store, app) {
   const ReactDOM = require('react-dom');
   ReactDOM.render(React.createElement(getProvider(store, app)), container);
-}
-
-function patchHistory(history) {
-  const oldListen = history.listen;
-  history.listen = (callback) => {
-    callback(history.getCurrentLocation());
-    oldListen.call(history, callback);
-  };
-  return history;
 }
