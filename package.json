@@ -31,7 +31,8 @@
     "coveralls": "ruban coveralls",
     "lint": "ruban lint",
     "pub": "ruban pub",
-    "precommit": "ruban lint-staged"
+    "precommit": "ruban lint-staged",
+    "prepublish": "npm run build"
   },
   "lint-staged": {
     "*.js": [
