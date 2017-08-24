@@ -1,7 +1,7 @@
 {
-  "name": "dva-react",
-  "version": "0.1.2",
-  "description": "Official React bindings for dva, with react-router2.",
+  "name": "dva-react2",
+  "version": "0.1.0",
+  "description": "Unofficial React bindings for dva, with react-router4.",
   "repository": {
     "type": "git",
     "url": "https://github.com/dvajs/dva-react"
@@ -18,7 +18,7 @@
     "frontend"
   ],
   "authors": [
-    "chencheng <sorrycc@gmail.com> (https://github.com/sorrycc)"
+    "sandwich99 <ziyinghj@gmail.com> (https://github.com/sandwich99)"
   ],
   "license": "MIT",
   "bugs": {
@@ -42,11 +42,12 @@
   "dependencies": {
     "dva-core": "^0.1.0",
     "global": "^4.3.2",
+    "history": "^4.7.2",
     "invariant": "^2.2.2",
     "isomorphic-fetch": "^2.2.1",
     "react-redux": "^5.0.5",
-    "react-router": "^3.0.5",
-    "react-router-redux": "^4.0.8",
+    "react-router": "^4.2.0",
+    "react-router-redux": "^5.0.0-alpha.6",
     "redux": "^3.7.2"
   },
   "peerDependencies": {

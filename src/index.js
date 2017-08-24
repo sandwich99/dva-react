@@ -1,9 +1,9 @@
 import React from 'react';
 import invariant from 'invariant';
-import hashHistory from 'react-router/lib/hashHistory';
+import createHistory from 'history/createHashHistory';
 import {
   routerMiddleware,
-  syncHistoryWithStore,
+  ConnectedRouter,
   routerReducer as routing,
 } from 'react-router-redux';
 import document from 'global/document';
@@ -12,7 +12,7 @@ import * as core from 'dva-core';
 import { isFunction } from 'dva-core/lib/utils';
 
 export default function (opts = {}) {
-  const history = opts.history || hashHistory;
+  const history = opts.history || createHistory();
   const createOpts = {
     initialReducer: {
       routing,
@@ -24,20 +24,20 @@ export default function (opts = {}) {
       ];
     },
     setupApp(app) {
-      app._history = patchHistory(syncHistoryWithStore(history, app._store));
+      app._history = patchHistory(history);
     },
   };
 
   const app = core.create(opts, createOpts);
   const oldAppStart = app.start;
-  return { ...app, router, start };
+  return { ...app, mount, start };
 
-  function router(router) {
+  function mount(root) {
     invariant(
-      isFunction(router),
-      `[app.router] router should be function, but got ${typeof router}`,
+      isFunction(root),
+      `[app.root] root should be function, but got ${typeof root}`,
     );
-    app._router = router;
+    app._root = root;
   }
 
   function start(container) {
@@ -63,8 +63,8 @@ export default function (opts = {}) {
 
     // 路由必须提前注册
     invariant(
-      app._router,
-      `[app.start] router must be registered before app.start()`,
+      app._root,
+      `[app.start] mount must be registered before app.start()`,
     );
 
     oldAppStart.call(app);
@@ -76,10 +76,10 @@ export default function (opts = {}) {
 
     // If has container, render; else, return react component
     if (container) {
-      render(container, store, app, app._router);
+      render(container, store, app);
       app._plugin.apply('onHmr')(render.bind(null, container, store, app));
     } else {
-      return getProvider(store, this, this._router);
+      return getProvider(store, this);
     }
   }
 }
@@ -92,17 +92,20 @@ function isString(str) {
   return typeof str === 'string';
 }
 
-function getProvider(store, app, router) {
+function getProvider(store, app) {
+  const App = app._root;
   return extraProps => (
-    <Provider store={store}>
-      { router({ app, history: app._history, ...extraProps }) }
+    <Provider store={store} >
+      <ConnectedRouter history={app._history} >
+        <App {...extraProps} />
+      </ConnectedRouter >
     </Provider>
   );
 }
 
-function render(container, store, app, router) {
+function render(container, store, app) {
   const ReactDOM = require('react-dom');
-  ReactDOM.render(React.createElement(getProvider(store, app, router)), container);
+  ReactDOM.render(React.createElement(getProvider(store, app)), container);
 }
 
 function patchHistory(history) {
