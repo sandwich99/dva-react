@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva-react2';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Link,
 } from 'react-router-dom';
