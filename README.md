@@ -1,9 +1,9 @@
 # dva-react2
 
 [![NPM version](https://img.shields.io/npm/v/dva-react2.svg?style=flat)](https://npmjs.org/package/dva-react2)
-[![Build Status](https://img.shields.io/travis/dvajs/dva-react2.svg?style=flat)](https://travis-ci.org/dvajs/dva-react2)
+[![Build Status](https://img.shields.io/travis/sandwich99/dva-react2.svg?style=flat)](https://travis-ci.org/sandwich99/dva-react2)
 [![NPM downloads](http://img.shields.io/npm/dm/dva-react2.svg?style=flat)](https://npmjs.org/package/dva-react2)
-[![Dependencies](https://david-dm.org/dvajs/dva-react2/status.svg)](https://david-dm.org/dvajs/dva-react2)
+[![Dependencies](https://david-dm.org/sandwich99/dva-react2/status.svg)](https://david-dm.org/dvajs/dva-react2)
 
 Unofficial React bindings for dva, with react-router4
 
